@@ -5,7 +5,7 @@ var apiKey = '211c2be22c6d4ad1fb1d00f6bfd8f732';
 
 
 
-//searchBtn.addEventListener("click", respondClick);
+searchBtn.addEventListener("click", respondClick);
 
 function respondClick() {
     var cityName = newText.value;
@@ -32,4 +32,5 @@ function cityWeather(cityName) {
             console.error('Error:', error);
         });
 }
+
 

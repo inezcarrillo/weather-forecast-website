@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <title>Weather Dashboard</title>
 </head>
 <body>
     <h1>Weather Dashboard</h1>
-    <div class="container"
-        <form id="searchBar">Enter a City</form>
-        <input type="text" id="searchBar" name="Search">
-        <button type="button" class="searchBtn">Search</button>
-    </div>
-    <div class="col-lg-8">
-        <button id="history">Clear history</button>
+    <div class="container">
+        <form id="searchForm">Enter a City
+            <input type="text" id="searchBar" name="Search">
+            <button type="button" id="searchBtn">Search</button>
+            <button id="history">Clear history</button>
+        </form>
     </div>
     <script src="assests/search-results.js"></script>
 </body>
