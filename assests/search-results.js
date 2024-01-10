@@ -31,6 +31,21 @@ function cityWeather(cityName) {
         .catch(error => {
             console.error('Error:', error);
         });
-}
+};
+
+//get latitude and longitude of city 
+function getLocation(cityLocation) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(location) {
+            var latitude = location.coords.latitude;
+            var longitude = location.coords.longitude;
+            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+        });
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+};
+getLocation(window); 
+
 
 
