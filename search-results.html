@@ -7,9 +7,14 @@
 </head>
 <body>
     <h1>Weather Dashboard</h1>
-    <form for="searchBar">Enter a City:</form>
-    <input type="text" id="searchBar" name="Search">
-    <button type="button" class="searchBtn">Search</button>
+    <div class="container"
+        <form id="searchBar">Enter a City</form>
+        <input type="text" id="searchBar" name="Search">
+        <button type="button" class="searchBtn">Search</button>
+    </div>
+    <div class="col-lg-8">
+        <button id="history">Clear history</button>
+    </div>
     <script src="assests/search-results.js"></script>
 </body>
 </html>
