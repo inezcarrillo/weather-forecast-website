@@ -2,6 +2,8 @@ var searchBtn = document.getElementById('searchBtn');
 var newText = document.getElementById('searchBar');
 var searchHistoryList = [];
 var apiKey = '211c2be22c6d4ad1fb1d00f6bfd8f732';
+var todayWeather = document.getElementById('todays-weather');
+var forecast = document.getElementById('fiveday-forecast');
 
 
 
@@ -46,6 +48,14 @@ function getLocation(cityLocation) {
     }
 };
 getLocation(window); 
+
+
+
+function displayWeather() {
+    var cityId= response.data.id;
+    var forecastUrl= "https://api.openweathermap.org/data/2.5/forecast?id=" + cityId + "&appid=" + apiKey;
+
+}
 
 
 
