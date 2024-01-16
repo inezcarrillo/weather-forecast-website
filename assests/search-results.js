@@ -51,7 +51,11 @@ function getLocation(cityLocation) {
 };
 getLocation(window); 
 
-function celsiusLToFahrenheit(celsius) {
+function kelvinToCelsius(kelvin) {
+    return kelvin - 273.15;
+}
+
+function celsiusToFahrenheit(celsius) {
     return (celsius * 9/5) + 32 ;
 }
 
@@ -76,43 +80,42 @@ function display5DayForecast(cityId) {
         .catch(error => {
             console.error('Error:', error);
         });
-}
+};
 
 function update5DayForecast(forecastList) {
     // Clear the existing forecast HTML
     document.getElementById('forecast-row').innerHTML = '';
-    //forecast.innerHTML = '<h3>5-Day Forecast</h3>';
 
     // Iterate through the forecast data and update HTML
     for (let i = 0; i < forecastList.length; i += 8) { // Every 8th entry for a daily forecast
         const forecastData = forecastList[i];
         const forecastDate = new Date(forecastData.dt * 1000).toLocaleDateString();
-        var temperatureFaherenheit = celsiusLToFahrenheit(forecastData.main.temp);
-        const temperature = forecastData.main.temp;
+        const temperatureKelvin = forecastData.main.temp;
+        const temperatureFahrenheit = celsiusToFahrenheit(kelvinToCelsius(temperatureKelvin));
         const humidity = forecastData.main.humidity;
 
         const forecastElement = document.createElement('div');
         forecastElement.className = 'col-md-3 forecast bg-primary text-white m-2';
         forecastElement.innerHTML = `
             <p>Date: ${forecastDate}</p>
-            <p>Temperature: ${temperature} °C</p>
+            <p>Temperature: ${temperatureFahrenheit} °F</p>
             <p>Humidity: ${humidity}%</p>
         `;
 
-        //forecast.appendChild(forecastElement);
         document.getElementById('forecast-row').appendChild(forecastElement);
     }
 };
 
+
 function updateWeather(weatherData) {
     // Update the HTML elements with the weather data
 
-    var tenperatureFahrenheit = celsiusLToFahrenheit(weatherData.main.temp);
+    const temperatureFahrenheit = celsiusToFahrenheit(weatherData.main.temp);
 
     todayWeather.innerHTML = `
         <h2>Today's Weather</h2>
         <p>City: ${weatherData.name}</p>
-        <p>Temperature: ${weatherData.main.temp} °C</p>
+        <p>Temperature: ${temperatureFahrenheit} °F</p>
         <p>Humidity: ${weatherData.main.humidity}%</p>
         <p>Weather: ${weatherData.weather[0].description}</p>
     `;
