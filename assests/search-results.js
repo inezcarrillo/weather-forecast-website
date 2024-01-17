@@ -91,7 +91,7 @@ function update5DayForecast(forecastList) {
         const forecastData = forecastList[i];
         const forecastDate = new Date(forecastData.dt * 1000).toLocaleDateString();
         const temperatureKelvin = forecastData.main.temp;
-        const temperatureFahrenheit = celsiusToFahrenheit(kelvinToCelsius(temperatureKelvin));
+        const temperatureFahrenheit = celsiusToFahrenheit(kelvinToCelsius(temperatureKelvin).toFixed(0.00));
         const humidity = forecastData.main.humidity;
 
         const forecastElement = document.createElement('div');
@@ -110,13 +110,18 @@ function update5DayForecast(forecastList) {
 function updateWeather(weatherData) {
     // Update the HTML elements with the weather data
 
-    const temperatureFahrenheit = celsiusToFahrenheit(weatherData.main.temp);
+    //const temperatureFahrenheit = celsiusToFahrenheit(weatherData.main.temp);
+    const temperatureCelsius = kelvinToCelsius(weatherData.main.temp);
+    const temperatureFahrenheit = celsiusToFahrenheit(temperatureCelsius).toFixed(1); // Use toFixed(2) to get only 2 decimal places
+    const windSpeed = weatherData.wind.speed;
+
 
     todayWeather.innerHTML = `
         <h2>Today's Weather</h2>
         <p>City: ${weatherData.name}</p>
         <p>Temperature: ${temperatureFahrenheit} °F</p>
         <p>Humidity: ${weatherData.main.humidity}%</p>
+        <p>Wind-Speed: ${windSpeed}MPH</p>
         <p>Weather: ${weatherData.weather[0].description}</p>
     `;
 
