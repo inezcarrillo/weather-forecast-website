@@ -13,6 +13,7 @@ function respondClick() {
     var cityName = newText.value;
     console.log("City Name: ", cityName);
     cityWeather(cityName);
+    saveSearchedCity(cityName);
 }
 
 // fetch response for open weather 
@@ -27,7 +28,7 @@ function cityWeather(cityName) {
             return response.json();
         })
         .then(data => {
-            // Process the retrieved weather data
+            
             console.log('Weather Data:', data);
 
             updateWeather(data);
@@ -71,10 +72,7 @@ function display5DayForecast(cityId) {
             return response.json();
         })
         .then(data => {
-            // Process the retrieved forecast data
-            //console.log('5-Day Forecast Data:', data);
-
-            // Call a function to update the HTML with the 5-day forecast data
+            
             update5DayForecast(data.list);
         })
         .catch(error => {
@@ -83,15 +81,15 @@ function display5DayForecast(cityId) {
 };
 
 function update5DayForecast(forecastList) {
-    // Clear the existing forecast HTML
+    
     document.getElementById('forecast-row').innerHTML = '';
 
-    // Iterate through the forecast data and update HTML
-    for (let i = 0; i < forecastList.length; i += 8) { // Every 8th entry for a daily forecast
+    
+    for (let i = 0; i < forecastList.length; i += 8) { 
         const forecastData = forecastList[i];
         const forecastDate = new Date(forecastData.dt * 1000).toLocaleDateString();
         const temperatureKelvin = forecastData.main.temp;
-        const temperatureFahrenheit = celsiusToFahrenheit(kelvinToCelsius(temperatureKelvin).toFixed(0.00));
+        const temperatureFahrenheit = celsiusToFahrenheit(kelvinToCelsius(temperatureKelvin)).toFixed(0);
         const humidity = forecastData.main.humidity;
 
         const forecastElement = document.createElement('div');
@@ -108,11 +106,9 @@ function update5DayForecast(forecastList) {
 
 
 function updateWeather(weatherData) {
-    // Update the HTML elements with the weather data
 
-    //const temperatureFahrenheit = celsiusToFahrenheit(weatherData.main.temp);
     const temperatureCelsius = kelvinToCelsius(weatherData.main.temp);
-    const temperatureFahrenheit = celsiusToFahrenheit(temperatureCelsius).toFixed(1); // Use toFixed(2) to get only 2 decimal places
+    const temperatureFahrenheit = celsiusToFahrenheit(temperatureCelsius).toFixed(0); 
     const windSpeed = weatherData.wind.speed;
 
 
@@ -124,8 +120,31 @@ function updateWeather(weatherData) {
         <p>Wind-Speed: ${windSpeed}MPH</p>
         <p>Weather: ${weatherData.weather[0].description}</p>
     `;
+    let weatherPic = weatherData.weather[0].icon;
+    currentPicEl.setAttribute("src", "https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
+    currentPicEl.setAttribute("alt", weatherData.weather[0].description);
+    
 
-    // Call a function to get the 5-day forecast based on city ID
     display5DayForecast(weatherData.id);
 }
+function saveSearchedCity(cityName) {
+    
+    if (!searchHistoryList.includes(cityName)) {
+        // Add the city to the list
+        searchHistoryList.push(cityName);
+        
+        renderSearchHistory();
+    }
+}
 
+function renderSearchHistory() {
+    var historyListElement = document.getElementById('searchHistoryList');
+    
+    historyListElement.innerHTML = '';
+
+    for (var i = 0; i < searchHistoryList.length; i++) {
+        var listItem = document.createElement('li');
+        listItem.textContent = searchHistoryList[i];
+        historyListElement.appendChild(listItem);
+    }
+}
