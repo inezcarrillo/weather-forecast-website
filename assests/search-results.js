@@ -120,9 +120,6 @@ function updateWeather(weatherData) {
         <p>Wind-Speed: ${windSpeed}MPH</p>
         <p>Weather: ${weatherData.weather[0].description}</p>
     `;
-    let weatherPic = weatherData.weather[0].icon;
-    currentPicEl.setAttribute("src", "https://openweathermap.org/img/wn/" + weatherPic + "@2x.png");
-    currentPicEl.setAttribute("alt", weatherData.weather[0].description);
     
 
     display5DayForecast(weatherData.id);
