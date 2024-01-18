@@ -123,6 +123,55 @@ function updateWeather(weatherData) {
     
 
     display5DayForecast(weatherData.id);
+    // Assuming you have the weather data stored in a variable called 'weatherData'
+const weatherIcon = {
+    weather: [
+      {
+        id: 500,
+        main: "Rain",
+        description: "light rain",
+        icon: "10n"
+      },
+      {
+        id: 800,
+        main: 'Clear',
+        description: 'clear sky',
+        icon: '01d',
+      },
+      {
+        id: 801,
+        main: 'few clouds',
+        description: 'few clouds',
+        icon: '02d'
+      },
+      {
+        id: '600',
+        main: 'snow',
+        description: 'snow',
+        icon: '13d'
+      }
+    ]
+  };
+  // Get the container elements in your HTML
+const containerElement = document.getElementById('todays-weather');
+const containerElementForecast = document.getElementById('fiveday-forecast');
+
+// Loop through the weather data and create a weather icon element for each forecast
+weatherData.weather.forEach((forecast) => {
+  // Create a new weather icon element for each forecast
+  const weatherIconElement = document.createElement('img');
+
+  // Set the attributes of the weather icon element
+  weatherIconElement.setAttribute('src', `https://openweathermap.org/img/wn/${forecast.icon}.png`);
+  weatherIconElement.setAttribute('alt', forecast.description);
+
+  // Append the weather icon element to the corresponding container element
+  const forecastContainerElement = document.createElement('div');
+  forecastContainerElement.className = 'forecast';
+  forecastContainerElement.appendChild(weatherIconElement);
+
+  containerElementForecast.appendChild(forecastContainerElement);
+});
 }
 function saveSearchedCity(cityName) {
     
@@ -145,3 +194,37 @@ function renderSearchHistory() {
         historyListElement.appendChild(listItem);
     }
 }
+// Assuming you have the weather data stored in a variable called 'weatherData'
+const weatherIcon = {
+    weather: [
+      {
+        id: 500,
+        main: "Rain",
+        description: "light rain",
+        icon: "10n"
+      },
+      {
+        id: 800,
+        main: 'Clear',
+        description: 'clear sky',
+        icon: '01d',
+      },
+      {
+        id: 801,
+        main: 'few clouds',
+        description: 'few clouds',
+        icon: '02d'
+      },
+      {
+        id: '600',
+        main: 'snow',
+        description: 'snow',
+        icon: '13d'
+      }
+    ]
+  };
+  
+ 
+
+
+
