@@ -194,36 +194,6 @@ function renderSearchHistory() {
         historyListElement.appendChild(listItem);
     }
 }
-// Assuming you have the weather data stored in a variable called 'weatherData'
-const weatherIcon = {
-    weather: [
-      {
-        id: 500,
-        main: "Rain",
-        description: "light rain",
-        icon: "10n"
-      },
-      {
-        id: 800,
-        main: 'Clear',
-        description: 'clear sky',
-        icon: '01d',
-      },
-      {
-        id: 801,
-        main: 'few clouds',
-        description: 'few clouds',
-        icon: '02d'
-      },
-      {
-        id: '600',
-        main: 'snow',
-        description: 'snow',
-        icon: '13d'
-      }
-    ]
-  };
-  
  
 
 

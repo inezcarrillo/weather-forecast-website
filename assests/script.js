@@ -1,14 +1,10 @@
-var searchBtn = document.querySelector("#searchBtn");
-var newText = document.querySelectorAll('#searchBar');
+ var searchBtn = document.querySelector(".searchBtn");
+ var searchBar = document.querySelector('#searchBar');
+var linkElement = document.querySelector('a');
 
-searchBtn.addEventListener("click", nextPage);
+searchBtn.addEventListener("click", respondClick);
 
-function nextPage() {
-    document.getElementById("click").innerHTML;
-    var newText = searchBar.value;
-    console.log(newText);
-}
-
-function nextPage() {
-  window.location.assign('search-results.html');
+function respondClick() {
+    console.log.apply('Search Results');
+    window.location.href="search-results.html"
 }

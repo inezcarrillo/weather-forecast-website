@@ -1,44 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20;
-    padding: 20;
+    margin: 20px;
+    padding: 20px;
+}
+
+h1 {
     background-color: blue;
+    color: white;
     text-align: center;
 }
 
-#searchBar {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-#searchButton {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-#searchHistory {
-    margin-top: 20px;
-}
-
-#searchHistory div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #f8f8f8;
-    margin-bottom: 5px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-
 .container {
-    display: flex;
-    justify-content: space-around; 
-    align-items: center;
-    flex-wrap: wrap; 
-    gap: 10px; 
+    text-align: center;
 }
-
