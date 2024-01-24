@@ -104,75 +104,75 @@ function update5DayForecast(forecastList) {
     }
 };
 
-
 function updateWeather(weatherData) {
 
     const temperatureCelsius = kelvinToCelsius(weatherData.main.temp);
-    const temperatureFahrenheit = celsiusToFahrenheit(temperatureCelsius).toFixed(0); 
+    const temperatureFahrenheit = celsiusToFahrenheit(temperatureCelsius).toFixed(0);
     const windSpeed = weatherData.wind.speed;
-
 
     todayWeather.innerHTML = `
         <h2>Today's Weather</h2>
         <p>City: ${weatherData.name}</p>
         <p>Temperature: ${temperatureFahrenheit} °F</p>
         <p>Humidity: ${weatherData.main.humidity}%</p>
-        <p>Wind-Speed: ${windSpeed}MPH</p>
+        <p>Wind-Speed: ${windSpeed} MPH</p>
         <p>Weather: ${weatherData.weather[0].description}</p>
     `;
-    
 
     display5DayForecast(weatherData.id);
-    // Assuming you have the weather data stored in a variable called 'weatherData'
-const weatherIcon = {
-    weather: [
-      {
-        id: 500,
-        main: "Rain",
-        description: "light rain",
-        icon: "10n"
-      },
-      {
-        id: 800,
-        main: 'Clear',
-        description: 'clear sky',
-        icon: '01d',
-      },
-      {
-        id: 801,
-        main: 'few clouds',
-        description: 'few clouds',
-        icon: '02d'
-      },
-      {
-        id: '600',
-        main: 'snow',
-        description: 'snow',
-        icon: '13d'
-      }
-    ]
-  };
-  // Get the container elements in your HTML
-const containerElement = document.getElementById('todays-weather');
-const containerElementForecast = document.getElementById('fiveday-forecast');
 
-// Loop through the weather data and create a weather icon element for each forecast
-weatherData.weather.forEach((forecast) => {
-  // Create a new weather icon element for each forecast
-  const weatherIconElement = document.createElement('img');
+    const weatherIconData = [
+        {
+            id: 500,
+            main: "Rain",
+            description: "light rain",
+            icon: "10n"
+        },
+        {
+            id: 800,
+            main: 'Clear',
+            description: 'clear sky',
+            icon: '01d',
+        },
+        {
+            id: 801,
+            main: 'few clouds',
+            description: 'few clouds',
+            icon: '02d'
+        },
+        {
+            id: '600',
+            main: 'snow',
+            description: 'snow',
+            icon: '13d'
+        }
+    ];
 
-  // Set the attributes of the weather icon element
-  weatherIconElement.setAttribute('src', `https://openweathermap.org/img/wn/${forecast.icon}.png`);
-  weatherIconElement.setAttribute('alt', forecast.description);
+    // Assuming you have the weather data stored in a variable called 'response'
+    var forecast= [];
 
-  // Append the weather icon element to the corresponding container element
-  const forecastContainerElement = document.createElement('div');
-  forecastContainerElement.className = 'forecast';
-  forecastContainerElement.appendChild(weatherIconElement);
+    for (let i = 0; i < 5; i++) {
+        const forecastWeatherEl = document.createElement('div');
+        const weatherIcon = document.createElement('img');
+        weatherIcon.setAttribute("src", " https://openweathermap.org/img/wn/10d@2x.png");
+        //weatherIcon.setAttribute("alt", response.data.list[forecastIndex].weather[0].description);
+        forecastWeatherEl.append(weatherIcon);
+        const tempEl = document.createElement("p");
+        tempEl.innerHTML = temperatureFahrenheit;
+        forecastWeatherEl.append(tempEl);
+        const humidityEl = document.createElement("p");
+        humidityEl.innerHTML = weatherData.main.humidity;
+        forecastWeatherEl.append(humidityEl);
+        forecast.push(forecastWeatherEl); // Use push to add forecastWeatherEl to the forecast array
+}
 
-  containerElementForecast.appendChild(forecastContainerElement);
+// Assuming forecastContainer is an existing element where you want to append the forecast elements
+        var forecastContainer = document.getElementById("fiveday-forecast");
+        forecast.forEach(forecastElement => {
+        forecastContainer.append(forecastElement);
 });
 }
+
 function saveSearchedCity(cityName) {
     
     if (!searchHistoryList.includes(cityName)) {
@@ -181,7 +181,7 @@ function saveSearchedCity(cityName) {
         
         renderSearchHistory();
     }
-}
+};
 
 function renderSearchHistory() {
     var historyListElement = document.getElementById('searchHistoryList');
@@ -193,8 +193,4 @@ function renderSearchHistory() {
         listItem.textContent = searchHistoryList[i];
         historyListElement.appendChild(listItem);
     }
-}
- 
-
-
-
+};
